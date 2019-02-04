@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Опаздывающие</title>
+  <style>
+      
+    #orders {
+      font-family: sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      width: 80%;
+      margin: auto;
+      margin-top: 47px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    #orders th, #orders td {
+      border: 1px solid #e7e7e7;
+      padding: 8px;
+    }
+    
+    #orders tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+    
+    #orders tr:hover {
+      background-color: #e7e7e7;
+    }
+    
+    #orders th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      background-color: #76b729;
+      color: white;
+      text-align: left;
+    }
+
+    input[name="search"] {
+      width: 130px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      margin: 15px 15px 0 0;
+      font-size: 16px;
+      padding: 12px 20px 12px 20px;
+      -webkit-transition: width 0.4s ease-in-out;
+      transition: width 0.4s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <form action="#" th:action="@{/callcenter}" method="post" enctype="multipart/form-data">
+    <input type="text" name="search" placeholder="Поиск..">
+  </form>
+    <table id="orders">
+      <tr>
+        <th>Номер заказа</th>
+        <th>Время добавления</th>
+      </tr>
+      <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.time}"></td>
+      </tr>
+    </table>
+
+</body>
+</html>
