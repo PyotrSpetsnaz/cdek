@@ -24,7 +24,6 @@ public class OrderController {
             orderService.addLateOrder(id);
         } catch (Exception e) {
             model.addAttribute("message", "Вы ввели неверный номер заказа!");
-            System.out.println(e.getMessage());
             return "lateorder";
         }
         return "redirect:/lateorder";
