@@ -12,14 +12,21 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping(value = "/lateorder", method = RequestMethod.GET)
-    public String lateorder() {
+    public String lateorder(Model model) {
+        model.addAttribute("message", "Введите номер заказа:");
         return "lateorder";
     }
 
     @RequestMapping(value = "/lateorder", method = RequestMethod.POST)
-    public String lateorderAdd(@RequestParam String ordernumber) {
+    public String lateorderAdd(@RequestParam String ordernumber, Model model) {
         int id = Integer.parseInt(ordernumber.replace("-", ""));
-        orderService.addLateOrder(id);
+        try {
+            orderService.addLateOrder(id);
+        } catch (Exception e) {
+            model.addAttribute("message", "Вы ввели неверный номер заказа!");
+            System.out.println(e.getMessage());
+            return "lateorder";
+        }
         return "redirect:/lateorder";
     }
 

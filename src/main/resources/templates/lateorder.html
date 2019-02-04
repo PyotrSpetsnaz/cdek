@@ -117,6 +117,7 @@
 
 <body>
   <div class="container">
+    <p th:text="${message}"></p>
     <form th:action="@{/lateorder}" onsubmit="return checkOrderNumber()" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="label-col">
